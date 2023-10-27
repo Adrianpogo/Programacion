@@ -44,8 +44,6 @@ public class PrimerJuego {
 		
 
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("*********************************************************");
 
 		//Realizamos la primera partida, tras ello comprobamos si el usuario quiere seguir jugando
 		do {
@@ -55,6 +53,7 @@ public class PrimerJuego {
 				e.printStackTrace();
 			}
 
+			System.out.println("");
 			System.out.println("");
 			System.out.println("------------ ¿QUIERE VOLVER A JUGAR? (s/n) -------------");
 			System.out.println("");
@@ -80,6 +79,7 @@ public class PrimerJuego {
 		
 		//Panel de inicio del juego
 		System.out.println();
+		System.out.println("*********************************************************");
 		System.out.println("	 ---------------------------------------- 			");
 		System.out.println("	|           BIENVENIDO AL JUEGO          |			");
 		System.out.println(" 	 ---------------------------------------- 			");
@@ -97,11 +97,11 @@ public class PrimerJuego {
 			
 			//Excepción si el usuario no introduce un número por pantalla
 			try {
-				System.out.print("Introduzca un numero --> ");
+				System.out.print("Introduzca un número --> ");
 				numUsuario = sc.nextInt();
 			} catch (InputMismatchException e) {
 				System.err.println(e);
-				throw new InputMismatchException("No se ha introducido un numero");
+				throw new InputMismatchException("No se ha introducido un número");
 			}
 			
 			//Comprobamos si el valor del usuario esta en el rango y si es igual, mayor o igual que el valor aleatorio
@@ -121,9 +121,9 @@ public class PrimerJuego {
 	//Función para comprobar si el valor del usuario es el que buscamos ( si no lo es añade un intento al contador )
 	public static void comprobarValor (int numAleatorio, int numUsuario, int contador) {
 		if (numUsuario < numAleatorio) {
-			System.out.println("El numero que buscas es mayor");
+			System.out.println("El número que buscas es mayor");
 		} else if (numUsuario > numAleatorio){
-			System.out.println("El numero que buscas es menor");			
+			System.out.println("El número que buscas es menor");			
 		} else {
 			System.out.println("-------------------------------------------------------- ");
 			System.out.println("   ¡Felicidades! El número de intentos ha sido: " + contador );
@@ -140,13 +140,13 @@ public class PrimerJuego {
 		while(repetirPregunta) {
 			System.out.print("RESPUESTA --> ");
 			String respuesta = sc.nextLine();
-			
 			if (respuesta.equalsIgnoreCase("s")) {
 				return true;
 			}else if (respuesta.equalsIgnoreCase("n")) {
 				return false;
 			}else {
 				System.out.println("Debe responder con (s) SI, o (n) NO");
+				System.out.println();
 				repetirPregunta = true;
 				
 			}
