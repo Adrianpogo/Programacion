@@ -29,9 +29,14 @@ public class SegundoJuego_PPT {
 		String resultado ="";
 		
 		if(opcion == 1) {
-			resultado = juegoUsuario();
+			String jugadaUsuario1 =pedirJugadaUsuario() ;
+			String jugadaUsuario2 =pedirJugadaUsuario() ;
+			resultado = juego(jugadaUsuario1, jugadaUsuario2);
+			
 		}else if (opcion == 2) {
-			resultado = juegoIA();
+			String jugadaUsuario1 =pedirJugadaUsuario() ;
+			String jugadaIA =generarJugadaIA();
+			resultado = juego(jugadaUsuario1, jugadaIA);
 		}
 		
 		System.out.println();
@@ -54,59 +59,42 @@ public class SegundoJuego_PPT {
 		return opcion;
 	}
 	
-	//Función en la que se compara la jugada del usuario y de la IA para comprobar el resultado (si empata se repite el juego)
-	public static String juegoUsuario() {
-		
-		String jugadaUsuario1 = "Usuario 1: " + pedirJugadaUsuario();
-		String jugadaUsuario2 = pedirJugadaUsuario();
-		
-		if(jugadaUsuario1.equalsIgnoreCase("piedra") && jugadaUsuario2.equalsIgnoreCase("papel")) {
-			return "Usuario 1 = piedra  || Usuario 2 = papel  --> ¡EL USUARIO 2 GANA!";
-		}else if (jugadaUsuario1.equalsIgnoreCase("papel") && jugadaUsuario2.equalsIgnoreCase("piedra")) {
-			return "Usuario 1 = papel  || Usuario 2 = piedra  --> 'EL USUARIO 1 GANA!";
-		}else if(jugadaUsuario1.equalsIgnoreCase("piedra") && jugadaUsuario2.equalsIgnoreCase("tijera")) {
-			return "Usuario 1 = piedra  || Usuario 2 = tijera  --> 'EL USUARIO 1 GANA!";
-		}else if (jugadaUsuario1.equalsIgnoreCase("tijera") && jugadaUsuario2.equalsIgnoreCase("piedra")) {
-			return "Usuario 1 = tijera  || Usuario 2 = piedra  --> ¡EL USUARIO 2 GANA!";
-		}else if(jugadaUsuario1.equalsIgnoreCase("papel") && jugadaUsuario2.equalsIgnoreCase("tijera")) {
-			return "Usuario 1 = papel  || Usuario 2 = tijera  --> ¡EL USUARIO 2 GANA!";
-		}else if (jugadaUsuario1.equalsIgnoreCase("papel") && jugadaUsuario2.equalsIgnoreCase("tijera")) {
-			return "Usuario 1 = tijera  || Usuario 2 = papel  --> 'EL USUARIO 1 GANA!";
-		}
-		else {
-			System.out.println();
-			System.out.println("VAYA! HEMOS EMPATADO, VAMOS A REPETIR");
-			System.out.println();
-			return juegoIA();
-		}
-	}
-	
 
 	
 	//Función en la que se compara la jugada del usuario y de la IA para comprobar el resultado (si empata se repite el juego)
-	public static String juegoIA() {
+	public static String juego(String jugada1, String jugada2) {
 		
-		String jugadaIA = generarJugadaIA();
-		String jugadaUsuario = pedirJugadaUsuario();
 		
-		if(jugadaIA.equalsIgnoreCase("piedra") && jugadaUsuario.equalsIgnoreCase("papel")) {
-			return "Jugada IA = piedra  || Jugada Usuario = papel  --> ¡EL USUARIO GANA!";
-		}else if (jugadaIA.equalsIgnoreCase("papel") && jugadaUsuario.equalsIgnoreCase("piedra")) {
-			return "Jugada IA = papel  || Jugada Usuario = piedra  --> 'LA IA GANA!";
-		}else if(jugadaIA.equalsIgnoreCase("piedra") && jugadaUsuario.equalsIgnoreCase("tijera")) {
-			return "Jugada IA = piedra  || Jugada Usuario = tijera  --> 'LA IA GANA!";
-		}else if (jugadaIA.equalsIgnoreCase("papel") && jugadaUsuario.equalsIgnoreCase("tijera")) {
-			return "Jugada IA = tijera  || Jugada Usuario = piedra  --> ¡EL USUARIO GANA!";
-		}else if(jugadaIA.equalsIgnoreCase("papel") && jugadaUsuario.equalsIgnoreCase("tijera")) {
-			return "Jugada IA = papel  || Jugada Usuario = tijera  --> ¡EL USUARIO GANA!";
-		}else if (jugadaIA.equalsIgnoreCase("papel") && jugadaUsuario.equalsIgnoreCase("tijera")) {
-			return "Jugada IA = tijera  || Jugada Usuario = papel  --> 'LA IA GANA!";
+		if(jugada1.equalsIgnoreCase("piedra") && jugada2.equalsIgnoreCase("papel")) {
+			return "Jugada 1 = piedra  || Jugada 2 = papel  --> ¡GANA J2!";
+			
+			
+		}else if (jugada1.equalsIgnoreCase("papel") && jugada2.equalsIgnoreCase("piedra")) {
+			return "Jugada 1 = papel  || Jugada 2 = piedra  --> 'GANA J1!";
+			
+			
+		}else if(jugada1.equalsIgnoreCase("piedra") && jugada2.equalsIgnoreCase("tijera")) {
+			return "Jugada 1 = piedra  || Jugada 2 = tijera  --> 'GANA J1!";
+			
+			
+		}else if (jugada1.equalsIgnoreCase("papel") && jugada2.equalsIgnoreCase("tijera")) {
+			return "Jugada 1 = tijera  || Jugada 2 = piedra  --> ¡GANA J2!";
+			
+			
+		}else if(jugada1.equalsIgnoreCase("papel") && jugada2.equalsIgnoreCase("tijera")) {
+			return "Jugada 1 = papel  || Jugada 2 = tijera  --> ¡GANA J2!";
+			
+			
+		}else if (jugada1.equalsIgnoreCase("papel") && jugada2.equalsIgnoreCase("tijera")) {
+			return "Jugada 1 = tijera  || Jugada 2 = papel  --> 'GANA J1!";
+			
+			
 		}
 		else {
 			System.out.println();
 			System.out.println("VAYA! HEMOS EMPATADO, VAMOS A REPETIR");
 			System.out.println();
-			return juegoIA();
+			return juego(pedirJugadaUsuario(), generarJugadaIA());
 		}
 		
 	}
