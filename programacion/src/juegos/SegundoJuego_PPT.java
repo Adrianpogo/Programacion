@@ -24,16 +24,16 @@ public class SegundoJuego_PPT {
 		System.out.println("2. La IA");
 		System.out.println("");
 		
-		int opcion = escogerOpcion();
+		String opcion = escogerOpcion();
 		juego(opcion);
 		
 	}
 	
 	//Función que ejecuta el juego en función de la opcion escogida
-	public static void juego (int opcion){
+	public static void juego (String opcion){
 		String resultado = "Empate!";
 
-		if (opcion == 1) {
+		if (opcion.equals("1")) {
 			do {
 				String jugadaUsuario1 = pedirJugadaUsuario(1);
 				String jugadaUsuario2 = pedirJugadaUsuario(2);
@@ -42,7 +42,7 @@ public class SegundoJuego_PPT {
 				System.out.println(resultado);
 			} while (resultado.equalsIgnoreCase("Empate!"));
 		}
-		if (opcion == 2) {
+		if (opcion.equals("2")) {
 			do {
 				String jugadaUsuario1 = pedirJugadaUsuario(1);
 				String jugadaIA = generarJugadaIA();
@@ -54,18 +54,20 @@ public class SegundoJuego_PPT {
 	}
 	
 	//Función para elegir el tipo de juego (vs Usuario / vs IA)
-	public static int escogerOpcion() {
+	public static String escogerOpcion() {
 		Scanner sc = new Scanner (System.in);
-		int opcion = 0;
+		String opcion = "";
 		System.out.println("");
 		System.out.print("Pulse la opción que desea --> ");
-		try {
-			opcion = sc.nextInt();
-		} catch (InputMismatchException e) {
-			System.err.println( "No has escogido correctamente la opción " + e);
-			return escogerOpcion();
-		}
-		return opcion;
+		
+			opcion = sc.nextLine();
+			if(opcion.equals("1") || opcion.equals("2")) {
+				return opcion;
+			} else {
+				System.err.println( "No has escogido correctamente la opción ");
+				return escogerOpcion();
+			}
+		
 	}
 	
 	//Función en la que se compara la jugada del usuario y de la IA para comprobar el resultado (si empata se repite el juego)
