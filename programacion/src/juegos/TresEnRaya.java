@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class TresEnRaya {
 
 	public static void main(String[] args) {
-
+		Scanner sc = new Scanner (System.in);
+		
 		// Panel de inicio del juego
 		System.out.println("*********************************************************");
 		System.out.println("	                                          			");
@@ -25,13 +26,29 @@ public class TresEnRaya {
 		
 		tableroEnPartida(tablero);
 		
-		System.out.println("");
-		System.out.println("--------------------------------------------------------");
-		System.out.println("Comienza jugando el usuario (X)");
-		System.out.println("--------------------------------------------------------");
+		System.out.println("Desea jugar 1v1 (1) o contra la IA (2)");
+		int opcion = sc.nextInt();
 		
-		System.out.println();
-		juego(tablero, tableroPos);
+		if (opcion == 1) {
+			System.out.println("");
+			System.out.println("--------------------------------------------------------");
+			System.out.println("Comienza el juego el usuario 1 (X)");
+			System.out.println("--------------------------------------------------------");
+			System.out.println();
+			juego1v1(tablero, tableroPos);
+			
+		} else if (opcion == 2){
+			System.out.println("");
+			System.out.println("--------------------------------------------------------");
+			System.out.println("Comienza el juego el usuario  (X)");
+			System.out.println("--------------------------------------------------------");
+			System.out.println();
+			juegoIA(tablero, tableroPos);
+			
+		}else {
+			System.out.println("No has seleccionado ningun modo de juego, adios!");
+		}
+		
 
 	}
 	
@@ -70,18 +87,18 @@ public class TresEnRaya {
 	}
 	
 	//Función que contiene el bucle para el fujo del juego
-	public static void juego(String[][] tablero, String[][] tableroPos) {
+	public static void juego1v1(String[][] tablero, String[][] tableroPos) {
 		
 		for(int i = 0; i < 9 ; i++) {
 			if (i % 2 == 0) {
-				System.out.println(" --> Turno del USUARIO <-- ");
+				System.out.println(" --> Turno del USUARIO 1 <-- ");
 				System.out.println();
 				posicionesTablero(tableroPos);
 				System.out.println();
 				pedirJugadaUsuario(tablero);
 				System.out.println();
 				if(comprobar3enRaya(tablero)) {
-					System.out.println(" FIN DE LA PARTIDA --> El usuario ha ganado ");
+					System.out.println(" FIN DE LA PARTIDA --> El usuario 1 ha ganado ");
 					break;
 				}
 			}else {
@@ -104,6 +121,42 @@ public class TresEnRaya {
 			
 		}
 	}
+	
+	//Función que contiene el bucle para el fujo del juego
+	public static void juegoIA(String[][] tablero, String[][] tableroPos) {
+			
+			for(int i = 0; i < 9 ; i++) {
+				if (i % 2 == 0) {
+					System.out.println(" --> Turno del USUARIO <-- ");
+					System.out.println();
+					posicionesTablero(tableroPos);
+					System.out.println();
+					pedirJugadaUsuario(tablero);
+					System.out.println();
+					if(comprobar3enRaya(tablero)) {
+						System.out.println(" FIN DE LA PARTIDA --> El usuario ha ganado ");
+						break;
+					}
+				}else {
+					System.out.println(" --> Turno de la IA <-- ");
+					System.out.println();
+					posicionesTablero(tableroPos);
+					System.out.println();
+					pedirJugadaIA(tablero);
+					System.out.println();
+					if(comprobar3enRaya(tablero)) {
+						System.out.println(" FIN DE LA PARTIDA --> La IA ha ganado ");
+						break;
+					}
+				}
+			}
+			
+			if(!comprobar3enRaya(tablero)) {
+				System.out.println("----------------------------");
+				System.out.println("RESULTADO --> EMPATE");
+				
+			}
+		}
 
 	//Función para pedir al usuario su jugada y comprobar si es valida
 	public static String[][] pedirJugadaUsuario(String[][] tablero) {
@@ -142,12 +195,12 @@ public class TresEnRaya {
 			if(posX > 2 || posY > 2 || posX < 0 || posY < 0) {
 				System.out.println("Posición fuera de rango (3x3) , vuelva a intentarlo...");
 				System.out.println("");
-				return pedirJugadaUsuario(tablero);
+				return pedirJugadaUsuario2(tablero);
 			}
 			
 			if(!tablero[posX][posY].equals("-")) {
 				System.out.println("Ya hay ficha en esta posición, vuelva a intentarlo...");
-				return pedirJugadaUsuario(tablero);
+				return pedirJugadaUsuario2(tablero);
 			} else {
 				tablero[posX][posY] = "O";
 				imprimirTablero(tablero);
