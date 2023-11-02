@@ -77,7 +77,7 @@ public class TresEnRaya {
 		
 		if(!comprobar3enRaya(tablero)) {
 			System.out.println("----------------------------");
-			System.out.println("FIN DE LA PARTIDA --> EMPATE");
+			System.out.println("RESULTADO --> EMPATE");
 			
 		}
 	}
