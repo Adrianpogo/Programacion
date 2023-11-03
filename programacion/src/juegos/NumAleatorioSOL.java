@@ -2,7 +2,7 @@ package juegos;
 
 import java.util.Scanner;
 
-public class PrimerJuegoSOL {
+public class NumAleatorioSOL {
 
 	public static void main(String[] args) {
 		
