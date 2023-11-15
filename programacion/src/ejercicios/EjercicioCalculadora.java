@@ -13,34 +13,53 @@ public class EjercicioCalculadora {
 		System.out.println("     --->   M E N U   <---       ");
 
 		ArrayList<Integer> calculadora = new ArrayList<Integer>();
+		boolean continuar = true;
 
 		// Bucle principal del juego
-		while (true) {
+		while (continuar) {
 			int opcion = escogerOpcion(sc);
-			if (opcion == 1) {
+			
+			switch (opcion) {
+			case 1:
 				añadirNumero(calculadora, sc);
-			} else if (opcion == 2) {
-				mostrarCalculadora(calculadora);
-			} else if (opcion == 3) {
+				break;
 				
+			case 2:
+				mostrarCalculadora(calculadora);
+				break;
+				
+			case 3:
 				int operacion = escogerOperacion(sc);
-				if (operacion == 1) {
+				switch(operacion) {
+				case 1:
 					sumaNumeros(calculadora);
-				} else if (operacion == 2) {
+					break;
+					
+				case 2:
 					restaNumeros(calculadora);
-				} else if (operacion == 3) {
+					break;
+					
+				case 3:
 					multiplicacionNumeros(calculadora);
-				} else if (operacion == 4) {
+					break;
+					
+				case 4:
 					divisionNumeros(calculadora);
-				} else if (operacion == 5) {
+					break;
+					
+				case 5:
 					exponenteNumeros(calculadora);
-				} else {
+					break;
+					
+				default:
 					System.out.println("\nVolviendo al menú ...");
 				}
+				break;
 				
-			} else {
+			default:
 				System.out.println("\nGracias por su visita, hasta la próxima !");
 				System.out.println("-----------------------------------------");
+				continuar=false;
 				break;
 			}
 		}
@@ -72,7 +91,7 @@ public class EjercicioCalculadora {
 			}
 		} catch (InputMismatchException e) {
 			sc.nextLine();
-			System.err.println("ERROR: Por favor, ingrese un número entero. " + e);
+			System.err.println("ERROR: Por favor, ingrese un número. " + e);
 			return escogerOpcion(sc);
 		}
 	}
@@ -86,7 +105,7 @@ public class EjercicioCalculadora {
 		System.out.println("3. Multiplicar números");
 		System.out.println("4. Dividir números");
 		System.out.println("5. Exponente de los números");
-		System.out.println("6. Salir del programa");
+		System.out.println("6. Volver al menú");
 		System.out.println("--------------------------------");
 		System.out.println();
 		System.out.print("Seleccione una operación --> ");
@@ -113,55 +132,130 @@ public class EjercicioCalculadora {
 	// Función para mostrar los números de la calculdora
 	public static void mostrarCalculadora(ArrayList<Integer> calculadora) {
 		// Comprobación de si el ArrayList está vacio
-    	if (calculadora.isEmpty()) {
-            System.out.println("\nLa lista de la calculadora está VACIA");
-        } else {
-            System.out.println("\nSu lista de la calculadora hasta el momento:");
-            System.out.println();
-            // Recorremos el ArrayList imprimiendo cada elemento en una linea precedido de un índice
-            for (int i = 1; i <= calculadora.size(); i++) {
-                System.out.print(calculadora.get(i - 1) + " , ");
-            }
-        }
+		if (calculadora.isEmpty()) {
+			System.out.println("\nLa lista de la calculadora está VACIA");
+		} else {
+			System.out.println("\nSu lista de la calculadora hasta el momento:");
+			System.out.println();
+			// Recorremos el ArrayList imprimiendo cada elemento en una linea precedido de
+			// un índice
+			for (int i = 1; i <= calculadora.size(); i++) {
+				System.out.print(calculadora.get(i - 1) + " | ");
+			}
+		}
 	}
 
 	// Función para añadir un número a la calculadora
 	public static void añadirNumero(ArrayList<Integer> calculadora, Scanner sc) {
-        System.out.print("\nIntroduce el número que quieres AÑADIR: ");
+		System.out.print("\nIntroduce el número que quieres AÑADIR: ");
 
-        try {
-        	int numero = sc.nextInt();
-        	calculadora.add(numero);
+		// Comprobamos que se introduce un número entero y se añade a la calculadora
+		try {
+			int numero = sc.nextInt();
+			calculadora.add(numero);
 		} catch (InputMismatchException e) {
-			sc.nextLine(); 
-			System.out.println("ERROR: Solo puede ingresar números" + e);
+			sc.nextLine();
+			System.err.println("ERROR: Solo puede ingresar números enteros " + e);
 		}
-		
+
 	}
 
 	// Función para sumar los números de la calculadora
 	public static void sumaNumeros(ArrayList<Integer> calculadora) {
+		// Si no tenemos elementos en la calculadora no podemos realizar la operación
+		if (!calculadora.isEmpty()) {
+			int resultado = calculadora.get(0);
+			for (int i = 1; i < calculadora.size(); i++) {
+				resultado += calculadora.get(i);
+			}
+			calculadora.clear();
+			System.out.println("El resultado de la suma es: " + resultado);
 
-	}
-
-	// Función para hacer el exponente los números de la calculadora
-	public static void exponenteNumeros(ArrayList<Integer> calculadora) {
-
-	}
-
-	// Función para dividir los números de la calculadora
-	public static void divisionNumeros(ArrayList<Integer> calculadora) {
-
-	}
-
-	// Función para multiplicar los números de la calculadora
-	public static void multiplicacionNumeros(ArrayList<Integer> calculadora) {
+		} else {
+			System.out.println("No se puede hacer la operacion --> Calculadora VACIA");
+		}
 
 	}
 
 	// Función para restar los números de la calculadora
 	public static void restaNumeros(ArrayList<Integer> calculadora) {
+		// Si no tenemos elementos en la calculadora podemos realizar la operación
+		if (!calculadora.isEmpty()) {
+			int resultado = calculadora.get(0);
+			for (int i = 1; i < calculadora.size(); i++) {
+				resultado -= calculadora.get(i);
+			}
+			calculadora.clear();
+			System.out.println("El resultado de la resta es: " + resultado);
+
+		} else {
+			System.out.println("No se puede hacer la operacion --> Calculadora VACIA");
+		}
 
 	}
 
+	// Función para multiplicar los números de la calculadora
+	public static void multiplicacionNumeros(ArrayList<Integer> calculadora) {
+		// Si no tenemos elementos en la calculadora o solo tenemos 1 no podemos realizar la operación
+		if (calculadora.size() == 1 ) {
+			System.out.println("¡Solo hay un número, ingrese al menos otro número mas!");
+			
+		} else if (!calculadora.isEmpty()) {
+			long resultado = calculadora.get(0);
+			for (int i = 1; i < calculadora.size(); i++) {
+				resultado *= (long)calculadora.get(i);
+			}
+			calculadora.clear();
+			System.out.println("El resultado de la multiplicación es: " + resultado);
+		} else {
+			System.out.println("No se puede hacer la operacion --> Calculadora VACIA");
+		}
+	}
+
+	// Función para dividir los números de la calculadora
+	public static void divisionNumeros(ArrayList<Integer> calculadora) {
+		// Si no tenemos elementos en la calculadora o solo tenemos 1 no podemos realizar la operación
+		if (calculadora.size() == 1 ) {
+			System.out.println("¡Solo hay un número, ingrese al menos otro número mas!");
+			
+		} else if (!calculadora.isEmpty()) {
+			double resultado = calculadora.get(0);
+			for(int i = 1; i<calculadora.size();i++) {
+				if(calculadora.get(i)==0) {
+					resultado=-1;
+					break;
+				
+				}else {
+					resultado /= calculadora.get(i);
+				}
+			}
+			calculadora.clear();
+			if(resultado==-1) {
+				System.out.println("ERROR: Hay una división entre 0");
+			}else {
+				System.out.println("El resultado de la división es: " + resultado);
+			}
+		} else {
+			System.out.println("No se puede hacer la operacion --> Calculadora VACIA");
+		}
+
+	}
+
+	// Función para hacer el exponente los números de la calculadora
+	public static void exponenteNumeros(ArrayList<Integer> calculadora) {
+		// Si no tenemos elementos en la calculadora o solo tenemos 1 no podemos realizar la operación
+		if (calculadora.size() == 1) {
+			System.out.println("¡Solo hay un número, ingrese al menos otro número mas!");
+			
+		} else if (!calculadora.isEmpty()) {
+			double resultado = calculadora.get(0);
+			for(int i = 1 ; i < calculadora.size();i++) {
+				resultado = Math.pow(resultado, (double)calculadora.get(i));
+			}
+			calculadora.clear();
+			System.out.println("El resultado de los exponentes es: " + resultado);
+		} else {
+			System.out.println("No se puede hacer la operacion --> Calculadora VACIA");
+		}
+	}
 }
