@@ -35,22 +35,17 @@ public class Wordle {
 				System.out.println(" - = no contiene esta letra    |");
 				System.out.println("--------------------------------");
 				pistasPalabra(palabraUsuario, palabraDiaria, palabras);
-				impresionPistas(palabras);
-				
-				
+				impresionPistas(palabras);	
 			}
-			
 			// Restamos el intento
 			vidas--;
 			System.out.println();
 			System.out.println("\nTe quedan " + vidas + " intentos");
 			System.out.println("--------------------------------");
-			
 		}
-		
 		// Cuando se acaba y no hay vidas hemos perdido
 		if (vidas == 0) {
-			System.out.println("Te has quedado sin vidas, la palabra diaria es: " + palabraDiaria);
+			System.out.println("\nTe has quedado sin vidas, la palabra diaria es: " + palabraDiaria);
 		}
 		
 	}
