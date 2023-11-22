@@ -53,22 +53,35 @@ public class AhorcadoArrayList {
 
 	// Función para pedir una palabra por pantalla
 	public static String pedirPalabra(Scanner sc) {
-		String palabra = sc.nextLine();
+		String palabra;
 		
 		try {
-			if (palabra.matches("[a-zA-Z]+")) {
-				return palabra;
-			} else {
-				System.err.print("La palabra debe contener solo letras --> ");
+			palabra = sc.nextLine();
+			while(!soloLetras(palabra)) {
+				System.err.println("La palabra solo debe contener letras...");
+				System.out.print("Vuelva a intentarlo -->");
 				return pedirPalabra(sc);
 			}
+			return palabra;
+			
 		} catch (Exception e) {
 			sc.nextLine();
 			System.err.println("ERROR: " + e);
 			return pedirPalabra(sc);
 		}
 	}
-
+	
+	// Función para comprobar que una palabra solo se compone de letras
+	public static boolean soloLetras (String palabra) {
+		for (int i = 0 ; i < palabra.length(); i++) {
+			if (!Character.isLetter(palabra.charAt(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
 	// Función para escoger aleatoriamente una palabra de una lista de 4 palabras
 	// aleatorias. Para pedir la palabra llama a la función pedirPalabra
 	// Devuelve la palabra como un ArrayList de caracteres
