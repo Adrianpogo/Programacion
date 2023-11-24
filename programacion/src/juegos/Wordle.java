@@ -113,6 +113,7 @@ public class Wordle {
 	public static void impresionPistas (ArrayList<String> palabras) {
 		for(String palabra : palabras) {
 			System.out.println(palabra);
+			System.out.println();
 		}
 	}
 	
