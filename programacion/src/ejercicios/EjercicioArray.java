@@ -21,6 +21,7 @@ public class EjercicioArray {
 		array = addToArray(array, 20, 20);
 		imprimirArray(array);
 	}
+	// cometn
 	
 	//Función para añadir un valor en un array en una posición determinada
 	public static int[] addToArray(int[] array, int valor, int posicion) {
