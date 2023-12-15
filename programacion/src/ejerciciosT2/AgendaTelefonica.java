@@ -47,188 +47,149 @@ public class AgendaTelefonica {
 		boolean finalizar = false;
 
 		while (!finalizar) {
-			mostrarMenu();
-			opcionesAgenda opcion = opcionesAgenda.valor(sc.nextInt());
+			try {
+				mostrarMenu();
+				opcionesAgenda opcion = opcionesAgenda.valor(sc.nextInt());
+				sc.nextLine();
 
-			switch (opcion) {
-			case AÑADIR_NUMERO:
-				añadirNumero(agenda, sc);
-				break;
+				switch (opcion) {
+				case AÑADIR_NUMERO:
+					añadirNumero(agenda, sc);
+					break;
 
-			case BUSCAR_NUMERO:
-				buscarNumero(agenda, sc);
-				break;
+				case BUSCAR_NUMERO:
+					buscarNumero(agenda, sc);
+					break;
 
-			case ELIMINAR_NUMERO:
-				eliminarNumero(agenda, sc);
-				break;
+				case ELIMINAR_NUMERO:
+					eliminarNumero(agenda, sc);
+					break;
 
-			case MOSTRAR_AGENDA:
-				mostrarNumeros(agenda);
-				break;
+				case MOSTRAR_AGENDA:
+					mostrarNumeros(agenda);
+					break;
 
-			case SALIR:
-				System.out.println("\n¡Hasta la próxima!");
-				finalizar = true;
-				break;
+				case SALIR:
+					System.out.println("\n ¡Hasta la próxima!");
+					finalizar = true;
+					break;
 
-			default:
-				break;
+				default:
+					break;
+				}
+
+			} catch (Exception e) {
+				sc.nextLine();
+				System.out.println(" ERROR: no es una opción " + e);
 			}
-		}
 
+		}
 	}
 
 	// Función para mostrar el menú
 	public static void mostrarMenu() {
 		System.out.println();
-		System.out.println("+-----------------------------------------+");
-		System.out.println("| 1. Añadir un nuevo número de teléfono   |");
-		System.out.println("| 2. Buscar un número de teléfono         |");
-		System.out.println("| 3. Eliminar un número de teléfono       |");
-		System.out.println("| 4. Mostrar agenda                       |");
-		System.out.println("| 5. Salir de la agenda                   |");
-		System.out.println("+-----------------------------------------+");
-		System.out.print("\nEscriba la opción que desea --> ");
+		System.out.println(" +-----------------------------------------+");
+		System.out.println(" | 1. Añadir un nuevo número de teléfono   |");
+		System.out.println(" | 2. Buscar un número de teléfono         |");
+		System.out.println(" | 3. Eliminar un número de teléfono       |");
+		System.out.println(" | 4. Mostrar agenda                       |");
+		System.out.println(" | 5. Salir de la agenda                   |");
+		System.out.println(" +-----------------------------------------+");
+		System.out.print("\n Escriba la opción que desea --> ");
 
 	}
 
 	// Función para añadir un nuevo número
 	public static void añadirNumero(HashMap<String, ArrayList<Integer>> agenda, Scanner sc) {
-		boolean correcto = false;
 
 		// Pedimos al usuario que introduzca el número de telefono y el usuario hasta
 		// que sean correctos
-		do {
-			try {
-				System.out.print("\nIntroduce el número para añadir --> ");
-				int numero = sc.nextInt();
-				sc.nextLine();
-				if (numero < 1000000000 && numero > 99999999) {
-					System.out.print("\nIntroduce el nombre del titular --> ");
-					String titular = sc.nextLine().toUpperCase();
 
-					if (!yaExiste(agenda, numero)) {
-						// Comprueba si el usuario es nuevo o ya existe
-						// Si es nuevo se añade con su nueva lista de numeros de telefonos
-						// Si ya esiste se añade el nuevo numero
-						if (agenda.containsKey(titular)) {
-							agenda.get(titular).add(numero);
-							System.out.println("\nOperación realizada correctamente");
+		int numero = pedirNumero(sc);
+		sc.nextLine();
+		System.out.print("\n Introduce el nombre del titular --> ");
+		String titular = sc.nextLine().toUpperCase();
 
-						} else {
-							ArrayList<Integer> nuevoUsuario = new ArrayList<Integer>();
-							nuevoUsuario.add(numero);
-							agenda.put(titular, nuevoUsuario);
-							System.out.println("\nOperación realizada correctamente");
-						}
+		if (!yaExiste(agenda, numero)) {
+			// Comprueba si el usuario es nuevo o ya existe
+			// Si es nuevo se añade con su nueva lista de numeros de telefonos
+			// Si ya esiste se añade el nuevo numero
+			if (agenda.containsKey(titular)) {
+				agenda.get(titular).add(numero);
+				System.out.println("\n Operación realizada correctamente");
 
-						correcto = true;
-					}else {
-						System.out.println("\nYa existe este número de telefono, prueba con otro número ");
-					}
-
-				} else {
-					System.out.println("El número introducido está fuera de rangos, vuelva a intentarlo");
-				}
-
-			} catch (InputMismatchException e) {
-				System.out.println("ERROR: tipo de dato incorrecto " + e);
+			} else {
+				ArrayList<Integer> nuevoUsuario = new ArrayList<Integer>();
+				nuevoUsuario.add(numero);
+				agenda.put(titular, nuevoUsuario);
+				System.out.println("\n Operación realizada correctamente");
 			}
-		} while (!correcto);
+
+		} else {
+			System.out.println("\n Ya existe este número de telefono");
+		}
 
 	}
 
 	// Función para buscar un número
 	public static void buscarNumero(HashMap<String, ArrayList<Integer>> agenda, Scanner sc) {
-		boolean correcto = false;
 		// Comprobamos si la agenda está vacia para realizar o no la operación
 		if (agenda.isEmpty()) {
-			System.out.println("La agenda está vacia, agrege número primero ");
+			System.out.println(" La agenda está vacia, agrege número primero ");
 		} else {
 
 			// Pedimos al usuario que introduzca el número de telefono para buscar hasta que
 			// tenga el formato correcto
-			do {
-				try {
-					System.out.print("\nIntroduce el número para buscar --> ");
-					int numero = sc.nextInt();
-					if (numero < 1000000000 && numero > 99999999) {
 
-						// Comprobamos que exsiste el número recorriendo el diccionario
-						// Si existe devolvemos el usuario al que corresponde el número
-						for (String clave : agenda.keySet()) {
-							if (agenda.get(clave).contains(numero)) {
-								System.out.println("El número: " + numero + " corresponde al usuario --> " + clave);
-								correcto = true;
-								break;
-							}
-						}
-						if (!correcto) {
-							System.out.println("Ningún usuario posee el número marcado");
-							correcto = true;
-						}
+			int numero = pedirNumero(sc);
+			// Comprobamos que exsiste el número recorriendo el diccionario
+			// Si existe devolvemos el usuario al que corresponde el número
 
-					} else {
-						System.out.println("El número introducido está fuera de rangos, vuelva a intentarlo ");
-					}
+			for (String clave : agenda.keySet()) {
+				if (agenda.get(clave).contains(numero)) {
+					System.out.println(" El número: " + numero + " corresponde al usuario --> " + clave);
 
-				} catch (InputMismatchException e) {
-					System.out.println("ERROR: tipo de dato incorrecto " + e);
+				} else {
+					System.out.println(" Ningún usuario posee el número marcado");
 				}
-			} while (!correcto);
+			}
 		}
 
 	}
 
 	// Función para eliminar un número
 	public static void eliminarNumero(HashMap<String, ArrayList<Integer>> agenda, Scanner sc) {
-		boolean correcto = false;
+
 		// Comprobamos si la agenda está vacia para realizar o no la operación
 		if (agenda.isEmpty()) {
-			System.out.println("La agenda está vacia, agrege número primero");
+			System.out.println(" La agenda está vacia, agrege número primero");
 		} else {
 
 			// Pedimos al usuario que introduzca el número de telefono para borrar hasta que
 			// tenga el formato correcto
-			do {
-				try {
-					System.out.print("\nIntroduce el número para eliminar --> ");
-					int numero = sc.nextInt();
-					if (numero < 1000000000 && numero > 99999999) {
 
-						// Recorremos el diccionario, cuando encontramos el número de telefono lo
-						// eliminamos
-						// Si el número erá el último número del usuario, este también se borrará
-						for (String clave : agenda.keySet()) {
+			int numero = pedirNumero(sc);
 
-							if (agenda.get(clave).contains(numero)) {
-								int pos = agenda.get(clave).indexOf(numero);
-								agenda.get(clave).remove(pos);
+			// Recorremos el diccionario, cuando encontramos el número de telefono lo
+			// eliminamos
+			// Si el número erá el último número del usuario, este también se borrará
+			for (String clave : agenda.keySet()) {
 
-								if (agenda.get(clave).isEmpty()) {
-									agenda.remove(clave);
-								}
-
-								System.out.println("\nOperación realizada correctamente");
-								correcto = true;
-								break;
-							}
-						}
-
-						if (!correcto) {
-							System.out.println("\nNingún usuario posee el número marcado");
-							correcto = true;
-						}
-
-					} else {
-						System.out.println("El número introducido está fuera de rangos, vuelva a intentarlo ");
+				if (agenda.get(clave).contains(numero)) {
+					agenda.get(clave).remove(agenda.get(clave).indexOf(numero));
+					// Si la clave no tiene valores podemos borrar la clave directamente
+					if (agenda.get(clave).isEmpty()) {
+						agenda.remove(clave);
 					}
+					System.out.println("\n Operación realizada correctamente");
 
-				} catch (InputMismatchException e) {
-					System.out.println("ERROR: tipo de dato incorrecto " + e);
+				} else {
+					System.out.println("\n Ningún usuario posee el número marcado");
+
 				}
-			} while (!correcto);
+			}
+
 		}
 
 	}
@@ -236,8 +197,31 @@ public class AgendaTelefonica {
 	// Función para mostrar los número de un usuario
 	public static void mostrarNumeros(HashMap<String, ArrayList<Integer>> agenda) {
 		for (String clave : agenda.keySet()) {
-			System.out.println("Usuario: " + clave + " --> " + agenda.get(clave));
+			System.out.println(" Usuario: " + clave + " --> " + agenda.get(clave));
 		}
+	}
+
+	// Función para pedir un número al usuario
+	public static int pedirNumero(Scanner sc) {
+		boolean correcto = false;
+		do {
+			try {
+				System.out.print("\n Introduce el número para operar --> ");
+				int numero = sc.nextInt();
+				if (numero < 1000000000 && numero > 99999999) {
+					return numero;
+
+				} else {
+					System.out.println(" El número introducido está fuera de rangos, vuelva a intentarlo ");
+					return pedirNumero(sc);
+				}
+
+			} catch (InputMismatchException e) {
+				System.out.println(" ERROR: tipo de dato incorrecto " + e);
+				sc.nextLine();
+				return pedirNumero(sc);
+			}
+		} while (!correcto);
 	}
 
 	// Función para comprobar que un número ya existe
