@@ -3,8 +3,8 @@ package ejerciciosT1;
 public class EjercicioArray {
 
 	public static void main(String[] args) {
-
-		// Declaramos el array inicial
+		
+		// Declaramos el array 
 		int[] array = new int[5];
 		System.out.print("Array inicial: { ");
 		imprimirArray(array);
