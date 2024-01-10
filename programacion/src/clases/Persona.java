@@ -19,9 +19,9 @@ public class Persona {
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	//ATRIBUTOS
-	public String nombre;
-	public int edad;
-	public boolean sexo;
+	private String nombre;
+	private int edad;
+	private boolean sexo;
 
 	//CONSTRUCTOR
 	public Persona(String nombre, int edad, boolean sexo) {

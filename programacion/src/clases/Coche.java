@@ -30,13 +30,13 @@ public class Coche {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// ATRIBUTOS
-	public String marca;
-	public String modelo;
-	public int anioFabricacion;
-	public String color;
-	public double velocidadActual;
-	public boolean encendido;
-	public double consumoPorKilometro;
+	private String marca;
+	private String modelo;
+	private int anioFabricacion;
+	private String color;
+	private double velocidadActual;
+	private boolean encendido;
+	private double consumoPorKilometro;
 
 	// CONSTRUCTOR
 	public Coche(String marca, String modelo, int anioFabricacion, String color, double consumoPorKilometro) {

@@ -17,8 +17,8 @@ public class Rectangulo {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	//ATRIBUTOS
-	public double longitud;
-	public double ancho;
+	private double longitud;
+	private double ancho;
 
 	//CONSTRUCTOR
 	public Rectangulo(double longitud, double ancho) {

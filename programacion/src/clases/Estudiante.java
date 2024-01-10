@@ -25,10 +25,10 @@ public class Estudiante {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
     //ATRIBUTOS
-	public String nombre;
-	public int edad;
-	public List<String> cursosInscritos;
-	public Map<String, List<Double>> calificaciones;
+	private String nombre;
+	private int edad;
+	private List<String> cursosInscritos;
+	private Map<String, List<Double>> calificaciones;
 
     //CONSTRUCTOR
     public Estudiante(String nombre, int edad) {
