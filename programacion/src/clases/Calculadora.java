@@ -51,8 +51,5 @@ public class Calculadora {
 		return resultado;
 	}
 
-	public void setResultado(double resultado) {
-		this.resultado = resultado;
-	}
 	
 }

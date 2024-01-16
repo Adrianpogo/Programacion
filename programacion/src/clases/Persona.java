@@ -32,7 +32,7 @@ public class Persona {
 
 	//FUNCIONES
 	public void saludar() {
-		System.out.println("Hola, mi nombre es " + nombre);
+		System.out.println("Buenas, me llamo " + nombre);
 	}
 
 	public void cumplirAnios() {
