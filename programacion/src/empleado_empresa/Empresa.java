@@ -20,44 +20,54 @@ public class Empresa {
 			cantidadEnStock: Almacena la cantidad en stock del producto como un número entero (int).	  
 	*/
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-	//ATRIBUTOS
+	// ATRIBUTOS
 	private String nombre;
 	private ArrayList<Empleado> listaEmpleados;
-	
-	//CONSTRUCTOR
-	public Empresa (String nombre) {
-		this.nombre=nombre;
-		this.listaEmpleados= new ArrayList<Empleado>();
+
+	// CONSTRUCTOR
+	public Empresa(String nombre) {
+		this.nombre = nombre;
+		this.listaEmpleados = new ArrayList<Empleado>();
 	}
-	
-	//FUNCIONES
-	public void contratarEmpleado (Empleado empleado) {
-		listaEmpleados.add(empleado);
-	}
-	
-	public void despedirEmpleado (Empleado empleado) {
-		if (listaEmpleados.contains(empleado)) {
-			listaEmpleados.remove(empleado);
-		}else {
-			System.out.println("El empleado " + empleado.getNombre() + " " + empleado.getApellido() + " no trabaja en esta empresa");
+
+	// FUNCIONES
+
+	// Función para añadir un empleado a la lista de emepleados
+	public void contratarEmpleado(Empleado empleado) {
+		if (!listaEmpleados.contains(empleado)) {
+			listaEmpleados.add(empleado);
+		} else {
+			System.out.println("El empleado " + empleado.getNombre() + " " + empleado.getApellido()
+			+ " ya trabaja en esta empresa");
 		}
 	}
 
-	public void mostrarListaEmpleados () {
+	// Función para despedir a un empleado (borrarlo de la lista)
+	public void despedirEmpleado(Empleado empleado) {
+		if (listaEmpleados.contains(empleado)) {
+			listaEmpleados.remove(empleado);
+		} else {
+			System.out.println("El empleado " + empleado.getNombre() + " " + empleado.getApellido()
+					+ " no trabaja en esta empresa");
+		}
+	}
+
+	//Función para imprimir los empleados pertenecientes a la lista de emepleados
+	public void mostrarListaEmpleados() {
 		System.out.println(">> LISTA DE EMPLEADOS \n");
 		if (listaEmpleados.isEmpty()) {
 			System.out.println("No hay empledos\n");
 		}
-		
-		for(Empleado empleado : listaEmpleados) {
-			System.out.println("- " + empleado.getNombre() + ", " + empleado.getApellido() + " (" + empleado.getEdad() + ")");
+
+		for (Empleado empleado : listaEmpleados) {
+			System.out.println(
+					"- " + empleado.getNombre() + ", " + empleado.getApellido() + " (" + empleado.getEdad() + ")");
 		}
 	}
 
-
-	//GET&SET
+	// GET&SET
 	public String getNombre() {
 		return nombre;
 	}
@@ -70,8 +80,4 @@ public class Empresa {
 		return listaEmpleados;
 	}
 
-	public void setListaEmpleados(ArrayList<Empleado> listaEmpleados) {
-		this.listaEmpleados = listaEmpleados;
-	}
-	
 }
