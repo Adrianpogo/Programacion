@@ -52,7 +52,7 @@ public class TiendaOnline {
 			if(producto.getNombre().equals(nombreProducto)) {
 				int stockActual = producto.getCantidadStock();
 				if(cantidad<=stockActual) {
-					 double costo = cantidad * producto.getPrecio();
+					double costo = cantidad * producto.getPrecio();
 					producto.setCantidadStock(stockActual-cantidad);
 					System.out.println("- Producto: " + producto.getNombre() + " || Precio: " + producto.getPrecio() + " || Cantidad: " + cantidad);
 					System.out.println("El costo de la compra es: " + costo + "€\n");

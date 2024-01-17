@@ -23,18 +23,57 @@ public class Jugador {
 	
 	// Función para colocar barcos aleatoriamente en el tablero (se colocan 5 barcos)
 	public void colocarBarcos() {
-		
+		for (int i = 0; i < 5; i++) {
+            int fila, columna;
+            do {
+                // Genera posiciones aleatorias hasta encontrar una casilla vacía
+                fila = (int) (Math.random() * tablero.getTamaño());
+                columna = (int) (Math.random() * tablero.getTamaño());
+            } while (!sePuedeColocar(fila, columna));
+
+            Barco barco = new Barco(fila, columna);
+            barcos.add(barco);
+            tablero.colocarBarco(fila, columna);
+        }	
+	}
+	
+	//Función para comprobar si se puede colocar un barco en una posición
+	public boolean sePuedeColocar (int X, int Y) {
+		for (Barco barco : barcos) {
+			// No se puede colocar si hay un barco en esa posición
+            if (barco.getPosX()==X && barco.getPosY()==Y) {
+                return false; 
+            }
+        }
+        return true;
 	}
 
-	// Función para disparar a unas coordenadas
-	public void disparar() {
-		
+	// Función para disparar a unas coordenadas y ver si el barco ha sido hundido
+	public boolean disparar(int X, int Y) {
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 		COMPLETAR
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * */
+		return false;
 	}
 
 	// Función para mostrar el tablero del jugador
 	public void mostrarTablero() {
 		System.out.println("Tablero del jugador: " + nombre);
 		tablero.mostrarTablero();
+	}
+	
+	public void mostrarTableroJuego() {
+		System.out.println("            " + nombre);
+		tablero.mostrarTableroJuego();
 	}
 
 	// Función para comprobar si todos sus barcos están hundidos

@@ -82,14 +82,12 @@ public class Bicicleta implements Vehiculo{
 	public int getVelocidad() {
 		return velocidad;
 	}
-
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
 	}
 	public boolean isMontado() {
 		return montado;
 	}
-
 	public void setMontado(boolean montado) {
 		this.montado = montado;
 	}
