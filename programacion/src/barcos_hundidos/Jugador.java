@@ -50,35 +50,39 @@ public class Jugador {
 
 	// Función para disparar a unas coordenadas y ver si el barco ha sido hundido
 	public boolean disparar(int X, int Y) {
-		/*
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 		COMPLETAR
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * */
+		if(getTablero().dispararCasilla(X-1, Y-1)) {
+        	for(Barco barco: barcos) {
+        		if(barco.estaEnPosicion(X-1, Y-1)) {
+        			barco.hundirBarco();
+        			return true;
+        		}
+        	}
+        	
+        }else {
+        	System.out.println("Disparo inválido --> Coordenadas imposibles // Coordenadas repetidas");
+        }
 		return false;
+        
 	}
 
 	// Función para mostrar el tablero del jugador
 	public void mostrarTablero() {
-		System.out.println("Tablero del jugador: " + nombre);
+		System.out.println(nombre + "\n");
 		tablero.mostrarTablero();
 	}
 	
 	public void mostrarTableroJuego() {
-		System.out.println("            " + nombre);
+		System.out.println(nombre + "\n");
 		tablero.mostrarTableroJuego();
 	}
 
 	// Función para comprobar si todos sus barcos están hundidos
 	public boolean todosBarcosHundidos() {
 		return tablero.todosHundidos();
+	}
+	
+	public int barcosHundidosJugador () {
+		return tablero.barcosHundidos();
 	}
 	
 	

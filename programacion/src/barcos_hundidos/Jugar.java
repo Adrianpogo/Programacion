@@ -8,8 +8,14 @@ public class Jugar {
 
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("------   HUNDIR LA FLOTA   ------");
-		System.out.println("_________________________________\n");
+		System.out.println("--------    HUNDIR LA FLOTA    --------");
+		System.out.println("|                                     |");
+		System.out.println("| >>   = CASILLA SIN DISPARAR         |");
+		System.out.println("| >> - = AGUA                         |");
+		System.out.println("| >> H = HUNDIDO                      |");
+		System.out.println("|                                     |");
+		System.out.println("| Dispara y hunde los barcos rivales! |");
+		System.out.println("|_____________________________________|\n");
 		
 		//Creamos los jugdores con tableros de 5x5 y colocamos los barcos aleatoriamente
 		System.out.println("Creando el tablero de los jugadores...");
@@ -24,10 +30,15 @@ public class Jugar {
 		while (true) {
 			// Mostramos el tablero del jugador actual y le pedimos coordenadas para
 			// disparar
-			System.out.println("_________________________________");
+			System.out.println("_____________________________________");
 			System.out.println("\n" + jugadorActual.getNombre() + ", es tu turno. \n");
+			System.out.println("\u001B[41m");
 			jugador1.mostrarTableroJuego();
+			System.out.println(">> Barcos Hundidos --> " + jugador1.barcosHundidosJugador());
+			System.out.println("\u001B[44m");
 			jugador2.mostrarTableroJuego();
+			System.out.println(">> Barcos Hundidos --> " + jugador1.barcosHundidosJugador());
+			System.out.println("\u001B[0m");
 			System.out.print(jugadorActual.getNombre() + " --> ingresa la fila para disparar: ");
 			int fila = sc.nextInt();
 			System.out.print(jugadorActual.getNombre() + " --> ingresa la columna para disparar: ");
@@ -47,13 +58,16 @@ public class Jugar {
 			// Comprobamos si tosos los barcos del Oponente están hundidos con lo cual
 			// ganariamos y salimos del bucle del juego
 			if (oponente.todosBarcosHundidos()) {
-				System.out.println("\n\n_________________________________\n");
+				System.out.println("\n\n_____________________________________\n");
 				System.out.println(jugadorActual.getNombre() + " ha ganado. ¡Felicidades!");
 				System.out.println("\nEl tablero de la partida ha sido: \n");
-				System.out.println("---------------------------------\n");
+				System.out.println("-------------------------------------\n");
+				System.out.println("\u001B[41m");
 				jugador1.mostrarTablero();
+				System.out.println("\u001B[44m");
 				jugador2.mostrarTablero();
-				System.out.println("_______ HASTA LA PRÓXIMA ________");
+				System.out.println("\u001B[0m");
+				System.out.println("________  HASTA LA PRÓXIMA  _________");
 				break;
 			}
 

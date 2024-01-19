@@ -14,7 +14,7 @@ public class Tablero {
 		// Una vez tenemos creada la matriz del tamaño deseado, la inicializamos conAGUA (-)
 		for (int i = 0; i < tamaño; i++) {
 			for (int j = 0; j < tamaño; j++) {
-				casillas[i][j] = '-';
+				casillas[i][j] = ' ';
 			}
 		}
 	}
@@ -28,7 +28,7 @@ public class Tablero {
 			return false;
 		}
 		// Colocamos el barco si hay agua, si no no
-		if (casillas[fila][columna] == '-') {
+		if (casillas[fila][columna] == ' ') {
 			casillas[fila][columna] = 'O'; 
 			return true;
 		} else {
@@ -37,25 +37,34 @@ public class Tablero {
 	}
 
 	// Función para disparar a una casilla del tablero
-	public void dispararCasilla () {
-		/*
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 		COMPLETAR
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * */
+	public boolean dispararCasilla (int X, int Y) {
+		if (X < 0 || X >= tamaño || Y < 0 || Y >= tamaño) {
+            return false;
+        }
+
+        if (casillas[X][Y] == 'O') {
+            casillas[X][Y] = 'X';
+            return true;
+        } else if (casillas[X][Y] == ' ') {
+            casillas[X][Y] = '-';
+            return true;
+        } else if (casillas[X][Y] == '-'){
+        	casillas[X][Y] = '-';
+        	return true;
+        }else if (casillas[X][Y] == 'X'){
+        	casillas[X][Y] = 'X';
+        	return true;
+        }else {
+            return false;	
+        }
+        
 	}
 	
 	// Función para mostrar el tablero
 	public void mostrarTablero() {
+		System.out.println("   1  2  3  4  5  ");
 		for (int i = 0; i < tamaño; i++) {
-			System.out.print("         ");
+			System.out.print((i+1) + "  " );
             for (int j = 0; j < tamaño; j++) {
                 System.out.print( casillas[i][j] + "  ");
             }
@@ -66,13 +75,14 @@ public class Tablero {
 	
 	// Función para mostrar el tablero sin enseñar los barcos sin hundir
 	public void mostrarTableroJuego() {
+		System.out.println("   1  2  3  4  5  ");
 		for (int i = 0; i < tamaño; i++) {
-			System.out.print("         ");
+			System.out.print((i+1) + "  " );
             for (int j = 0; j < tamaño; j++) {
             	if(casillas[i][j]!='O') {
             		System.out.print( casillas[i][j] + "  ");
             	}else {
-            		System.out.print("-  ");
+            		System.out.print("   ");
             	}
                 
             }
@@ -91,6 +101,18 @@ public class Tablero {
 			}
 		}
 		return true;
+	}
+	
+	public int barcosHundidos() {
+		int contador = 0;
+		for (int i = 0; i < tamaño; i++) {
+			for (int j = 0; j < tamaño; j++) {
+				if(casillas[i][j] == 'X') {
+					contador ++;
+				}
+			}
+		}
+		return contador;
 	}
 	
 	
