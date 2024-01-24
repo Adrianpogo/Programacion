@@ -3,10 +3,12 @@ package empleadosHerencia;
 public class EmpleadoTiempoParcial extends Empleado{
 
 	private int horasTrabajadas;
-	private int tarifaPorHora;
+	private double tarifaPorHora;
 	
-	public EmpleadoTiempoParcial(String nombre, int edad, double salario) {
+	public EmpleadoTiempoParcial(String nombre, int edad, double salario, int horasTrabajadas, double tarifaPorHora) {
 		super(nombre, edad, salario);
+		this.horasTrabajadas=horasTrabajadas;
+		this.tarifaPorHora=tarifaPorHora;
 	}
 
 	public void mostrarHorasTrabajadas() {
@@ -26,11 +28,11 @@ public class EmpleadoTiempoParcial extends Empleado{
 		this.horasTrabajadas = horasTrabajadas;
 	}
 
-	public int getTarifaPorHora() {
+	public double getTarifaPorHora() {
 		return tarifaPorHora;
 	}
 
-	public void setTarifaPorHora(int tarifaPorHora) {
+	public void setTarifaPorHora(double tarifaPorHora) {
 		this.tarifaPorHora = tarifaPorHora;
 	}
 

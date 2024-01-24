@@ -5,8 +5,10 @@ public class Gerente extends Empleado{
 	private String departamento;
 	private int numSubordinados;
 	
-	public Gerente(String nombre, int edad, double salario) {
+	public Gerente(String nombre, int edad, double salario, String departamento, int numSubordinados) {
 		super(nombre, edad, salario);
+		this.departamento=departamento;
+		this.numSubordinados=numSubordinados;
 	}
 
     public void asignarTareas() {
