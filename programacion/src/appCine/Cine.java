@@ -9,8 +9,8 @@ public class Cine {
 	 private List<Reserva> reservas;
 
 	    public Cine() {
-	        this.peliculas = new ArrayList<>();
-	        this.reservas = new ArrayList<>();
+	        this.peliculas = new ArrayList<Pelicula>();
+	        this.reservas = new ArrayList<Reserva>();
 	    }
 
 	    public void agregarPelicula(Pelicula pelicula) {

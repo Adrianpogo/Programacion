@@ -18,7 +18,7 @@ public class Reserva {
 	    }
 
 	    private double calcularCostoTotal() {
-	        return cantidadBoletos * 8.99; // Precio ficticio por boleto
+	        return cantidadBoletos * 8.99; 
 	    }
 
 		public String generarConfirmacionReserva() {
