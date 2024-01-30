@@ -77,6 +77,7 @@ public class Restaurante {
 		}
 	}
 
+	//Función para mostrar toda la lista de pedidos
 	public void mostrarPedidos (){
 		for(Pedido pedido : listaPedidos) {
 			System.out.println("\n------ PEDIDO ------");
@@ -85,6 +86,7 @@ public class Restaurante {
 		}
 	}
 	
+	//Función para mostrar todos los artículos del restaurante
 	public void mostrarArticulos() {
 		System.out.println("------  MENU  ------");
 		for(Articulo articulo : listaArticulos) {
@@ -94,6 +96,29 @@ public class Restaurante {
 		}
 		System.out.println("\n--------------------\n");
 		
+	}
+	
+	//Función para pedir una cuenta, devuelve el total de la cuenta y cambia el estado del pedido a PAGADO
+	public void pedirCuenta (Cliente cliente) {
+		
+		for(Pedido pedido : listaPedidos) {
+			if(pedido.getMesaPedido()==cliente.getMesaCliente() && pedido.getEstadoPedido().getValor().equalsIgnoreCase("ENTREGADO")) {
+				pedido.actualizarEstado(EstadoPedido.PAGADO);
+				System.out.println("\n>> Cuenta de la mesa " + pedido.getMesaPedido() + ": " );
+				pedido.mostrarInfo();
+			}
+		}
+		
+	}
+	
+	//Función para cambiar el estado del pedido a PREPARADO
+	public void prepararPedido(Pedido pedido) {
+		pedido.actualizarEstado(EstadoPedido.EN_PREPARACION);
+	}
+
+	//Función para cambiar el estado del pedido a ENTREGADO
+	public void entregarPedido(Pedido pedido) {
+		pedido.actualizarEstado(EstadoPedido.ENTREGADO);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,4 +146,6 @@ public class Restaurante {
 	public void setListaPedidos(List<Pedido> listaPedidos) {
 		this.listaPedidos = listaPedidos;
 	}
+
+	
 }

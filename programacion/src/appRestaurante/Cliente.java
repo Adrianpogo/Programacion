@@ -17,11 +17,6 @@ public class Cliente {
 	//Métodos
 	
 	
-	public double pedirCuenta () {
-		double cuenta=0;
-		return cuenta;
-	}
-	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Getter&Setter
 	public int getMesaCliente() {

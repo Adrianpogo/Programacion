@@ -31,10 +31,19 @@ public class Main {
 		restaurante.añadirArticulo(art5);
 		restaurante.añadirArticulo(art6);
 		
-		/*
+		// Creamos clientes
+		Cliente mesa1 = new Cliente(1);
+		Cliente mesa2 = new Cliente(2);
+		Cliente mesa3 = new Cliente(3);
 		
+
 		//Mostramos el menu del restaurante
 		restaurante.mostrarArticulos();
+		
+		/*
+		 
+		---> SE HAN PROBADO Y FUNCIONAN
+		 
 		
 		//Eliminamos la dispoinibilidad de algun artículo
 		art1.agotarProducto();
@@ -51,14 +60,23 @@ public class Main {
 		
 		*/
 		
-		//Creamos clientes
-		Cliente mesa1 = new Cliente(1);
-		Cliente mesa2 = new Cliente(2);
-		Cliente mesa3 = new Cliente(3);
-		Cliente mesa4 = new Cliente(4);
-		Cliente mesa5 = new Cliente(5);
-		
+
 		Pedido pedido1 = restaurante.relizarPedido(mesa1, 2);
+		restaurante.mostrarPedidos();
+		
+		Pedido pedido2 = restaurante.relizarPedido(mesa2, 1);
+		restaurante.mostrarPedidos();
+		
+		
+		restaurante.prepararPedido(pedido1);
+		restaurante.prepararPedido(pedido2);
+		
+		restaurante.mostrarPedidos();
+		
+		Pedido pedido3 = restaurante.relizarPedido(mesa3, 1);
+		
+		restaurante.entregarPedido(pedido1);
+		restaurante.pedirCuenta(mesa1);
 		
 		restaurante.mostrarPedidos();
 	}

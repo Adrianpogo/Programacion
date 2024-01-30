@@ -20,13 +20,18 @@ public class Pedido {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Métodos
-	public double calcularTotal () {
-		double total=0;
+	public double calcularTotal() {
+		double total = 0;
+
+		for (Articulo articulo : articulosPedido.keySet()) {
+			total += (articulo.getPrecio()* articulosPedido.get(articulo));
+		}
+
 		return total;
 	}
 	
-	public void actualizarEstado() {
-		
+	public void actualizarEstado(EstadoPedido estado) {
+		this.estadoPedido=estado;
 	}
 	
 	public void mostrarInfo() {
@@ -35,9 +40,10 @@ public class Pedido {
 			System.out.println("Articulo: " + articulo.getNombre() + " (" + articulosPedido.get(articulo) + ")");
 			System.out.println("Descripcion: " + articulo.getDescripcion());
 			System.out.println("Precio: " + (articulo.getPrecio()*articulosPedido.get(articulo)) + "€");
-			System.out.println("\n\nPrecio TOTAL: " + calcularTotal());
-			System.out.println("Estado: " + estadoPedido.getValor());
+			
 		}
+		System.out.println("\n\nPrecio TOTAL: " + calcularTotal());
+		System.out.println("Estado: " + estadoPedido.getValor());
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +66,8 @@ public class Pedido {
 	public void setEstadoPedido(EstadoPedido estadoPedido) {
 		this.estadoPedido = estadoPedido;
 	}
+
+	
 	
 	
 }
