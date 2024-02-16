@@ -6,6 +6,7 @@ public class RecursoBiblioteca {
 	private String id;
 	private String titulo;
 	private int añoPublicacion;
+	private boolean disponible;
 	
 	
 	//Constructor
@@ -14,15 +15,24 @@ public class RecursoBiblioteca {
 		this.id = id;
 		this.titulo = titulo;
 		this.añoPublicacion = añoPublicacion;
+		disponible=true;
 	}
 	
 	//Métodos
 	public void reservar() {
-		
+		if(disponible) {
+			this.disponible= false;
+		}else {
+			System.out.println("--> El libro ya está reservado");
+		}
 	}
 	
 	public void devolver () {
-		
+		if(!disponible) {
+			this.disponible= true;
+		}else {
+			System.out.println("--> El libro ya está en la biblioteca");
+		}
 	}
 	
 	public void mostrarInfo () {
@@ -50,5 +60,13 @@ public class RecursoBiblioteca {
 	}
 	public void setAñoPublicacion(int añoPublicacion) {
 		this.añoPublicacion = añoPublicacion;
+	}
+
+	public boolean isDisponible() {
+		return disponible;
+	}
+
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
 	}
 }

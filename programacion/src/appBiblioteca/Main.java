@@ -38,7 +38,22 @@ public class Main {
 		biblioteca.buscarAutor("Charles Soule");
 		biblioteca.buscarAutor("Federico García Lorca");
 
-
+		biblioteca.mostrarReservas();
+		
+		biblioteca.reservarRecurso(lib1, "001");
+		biblioteca.reservarRecurso(lib1, "002");
+		biblioteca.reservarRecurso(lib2, "001");
+		biblioteca.reservarRecurso(lib4, "013");
+		biblioteca.reservarRecurso(rev1, "004");
+		biblioteca.reservarRecurso(rev5, "104");
+		
+		biblioteca.mostrarReservas();
+		
+		lib1.devolver();
+		lib2.devolver();
+		
+		biblioteca.reservarRecurso(lib1, "076");
+		biblioteca.mostrarReservas();
 	}
 
 }

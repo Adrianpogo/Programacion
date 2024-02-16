@@ -60,6 +60,35 @@ public class Biblioteca {
 		}
 	}
 	
+	public void reservarRecurso (RecursoBiblioteca recurso, String idUsuario) {
+		if(listaElementos.contains(recurso) && recurso.isDisponible()) {
+			if (listaReservas.containsKey(recurso.getId())) {
+                listaReservas.get(recurso.getId()).add(idUsuario);
+            } else {
+                ArrayList<String> usuarios = new ArrayList<>();
+                usuarios.add(idUsuario);
+                listaReservas.put(recurso.getId(), usuarios);
+            }
+            recurso.reservar();
+		}else {
+			System.out.println("El recurso no está disponible en esta biblioteca");
+		}
+
+	}
+	
+	
+	public void mostrarReservas (){
+		System.out.println("\n >> RESERVAS <<");
+		System.out.println("---------------");
+		for(String id : listaReservas.keySet()) {
+			System.out.println("\n  -ID RECURSO: " + id);
+			List<String> usuarios = listaReservas.get(id);
+			System.out.println("  -RESERVADO POR: ");
+			for (String usuario : usuarios) {
+				System.out.println("     +Usuario: " + usuario );
+			}
+		}
+	}
 	
 	//Getters&Setters
 	public String getNombre() {
